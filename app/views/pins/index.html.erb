@@ -1,32 +1,22 @@
 <p id="notice"><%= notice %></p>
 <div class="container">
-  <h1>Lista de Juegos</h1>
+  <h1 style="color:darkkhaki">Lista de Juegos</h1>
+</br>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Photo</th>
-        <th>Description</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
+  <% @pins.each do |pin| %>
 
-    <tbody>
-      <% @pins.each do |pin| %>
-      <tr>
-        <td><%= pin.name %></td>
-        <td><%= image_tag(pin.photo, :style => 'width:250px') %></td>
-        <td><%= pin.description %></td>
-        <td><%= link_to 'Show', pin %></td>
-        <td><%= link_to 'Edit', edit_pin_path(pin) %></td>
-        <td><%= link_to 'Destroy', pin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <div class="col-md-4">
+    <div class="thumbnail">
+      <%= pin.name %>
+      <%= image_tag(pin.photo, :style => 'width:300px') %>
+      <%= pin.description %></br>
+      <%= link_to 'Show', pin, :class => 'btn' %>
+      <%= link_to 'Edit', edit_pin_path(pin), :class => 'btn' %>
+      <%= link_to 'Destroy', pin, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn' %>
+    </div>
+  </div>
+  <% end %>
+
+  <br>
+  <%= link_to 'New Pin', new_pin_path %>
 </div>
-
-<br>
-
-<%= link_to 'New Pin', new_pin_path %>
